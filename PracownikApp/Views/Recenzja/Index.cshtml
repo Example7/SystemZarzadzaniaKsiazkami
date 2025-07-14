@@ -1,0 +1,90 @@
+﻿@model IEnumerable<AppData.Data.Sklep.Recenzja>
+
+@{
+    ViewData["Title"] = "Zarządzanie recenzjami";
+    var items = Model.ToList();
+}
+
+<div class="py-5 min-vh-100 container">
+
+    <div class="bg-primary bg-gradient text-white rounded-4 shadow-sm p-4 mb-5 text-center">
+        <h1 class="display-5 fw-bold">
+            <i class="bi bi-chat-left-text-fill me-2"></i> Zarządzanie recenzjami
+        </h1>
+        <p class="mb-0">Lista wszystkich recenzji książek</p>
+    </div>
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 mb-4">
+        <p class="text-muted m-0 order-1 order-md-1">
+            Łączna liczba recenzji: <strong>@items.Count</strong>
+        </p>
+
+        <div class="order-2 order-md-2 d-inline-flex align-items-center" style="max-width: 320px;">
+            @await Component.InvokeAsync("Search", new { placeholder = "Szukaj recenzji...", inputName = "searchTerm", formAction = Url.Action("Index") })
+        </div>
+
+        <a class="btn btn-dark rounded-pill px-4 py-2 shadow d-flex align-items-center gap-2 order-3" asp-action="Create">
+            <i class="bi bi-plus-circle"></i> Dodaj recenzję
+        </a>
+    </div>
+
+    @if (!items.Any())
+    {
+        <div class="alert alert-warning text-center shadow-sm">
+            <i class="bi bi-exclamation-circle me-2"></i> Brak recenzji do wyświetlenia.
+        </div>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="cardContainer">
+            @foreach (var item in items)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm rounded-4 border-0 hover-scale position-relative card-item">
+                        <div style="height: 6px; background: linear-gradient(to right, #0dcaf0, #6610f2);"></div>
+
+                        <div class="card-body d-flex flex-column p-4">
+                            <h5 class="fw-bold text-info mb-2">
+                                <i class="bi bi-star-fill me-1"></i> Ocena: @item.Ocena/5
+                            </h5>
+
+                            <p class="text-body small mb-3" style="white-space:normal; max-height:140px; overflow:auto;">
+                                @item.Tresc
+                            </p>
+
+                            <div class="mb-3 text-muted small">
+                                Dodano: <strong>@item.DataDodania.ToShortDateString()</strong><br />
+                                Książka: <strong>@item.Ksiazka?.Tytul</strong><br />
+                                Użytkownik: <strong>@item.Uzytkownik?.Email</strong>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center pt-3 border-top mt-auto">
+                                <div class="btn-group btn-group-sm">
+                                    <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.RecenzjaID" title="Edytuj recenzję">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.RecenzjaID" title="Zobacz szczegóły">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.RecenzjaID" title="Usuń recenzję">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .hover-scale {
+        transition: transform 0.2s ease;
+    }
+
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+</style>

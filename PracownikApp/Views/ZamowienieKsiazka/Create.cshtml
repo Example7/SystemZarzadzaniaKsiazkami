@@ -1,0 +1,66 @@
+﻿@model AppData.Data.Sklep.ZamowienieKsiazka
+
+@{
+    ViewData["Title"] = "Dodaj pozycję zamówienia";
+}
+
+<div class="container py-5 min-vh-100">
+
+    <div class="bg-primary bg-gradient text-white rounded-4 shadow-sm p-4 mb-4 text-center">
+        <h1 class="display-5 fw-bold">
+            <i class="bi bi-plus-square me-2"></i> Dodaj pozycję zamówienia
+        </h1>
+        <p class="mb-0">Wypełnij formularz, aby dodać nową pozycję do zamówienia</p>
+    </div>
+
+    <div class="card shadow-sm rounded-4 border-0 mx-auto" style="max-width: 600px;">
+        <div style="height: 8px; background: linear-gradient(90deg, #0d6efd, #0a58ca);" class="rounded-top"></div>
+        <div class="card-body">
+
+            <form asp-action="Create" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="ZamowienieID" class="form-label"></label>
+                    <select asp-for="ZamowienieID" class="form-select" asp-items="ViewBag.ZamowienieID"></select>
+                    <span asp-validation-for="ZamowienieID" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="KsiazkaID" class="form-label"></label>
+                    <select asp-for="KsiazkaID" class="form-select" asp-items="ViewBag.KsiazkaID"></select>
+                    <span asp-validation-for="KsiazkaID" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Ilosc" class="form-label"></label>
+                    <input asp-for="Ilosc" class="form-control" />
+                    <span asp-validation-for="Ilosc" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="CenaJednostkowa" class="form-label"></label>
+                    <input asp-for="CenaJednostkowa" type="number" step="0.01" class="form-control" />
+                    <span asp-validation-for="CenaJednostkowa" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="submit" class="btn btn-primary d-flex align-items-center gap-2 shadow-sm">
+                        <i class="bi bi-check2-circle"></i> Dodaj pozycję
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary d-flex align-items-center gap-2 shadow-sm">
+                        <i class="bi bi-arrow-left-circle"></i> Powrót do listy
+                    </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

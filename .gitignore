@@ -1,0 +1,20 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build output
+bin/
+obj/
+
+# Dotnet
+*.db
+*.sqlite
+*.mdf
+*.ldf
+*.log
+*.env
+.vscode/
+appsettings*.json

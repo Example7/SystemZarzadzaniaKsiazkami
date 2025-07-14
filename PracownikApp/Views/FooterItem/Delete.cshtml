@@ -1,0 +1,44 @@
+﻿@model AppData.Data.CMS.FooterItem
+
+@{
+    ViewData["Title"] = "Usuń element stopki";
+}
+
+<div class="container py-5 min-vh-100">
+
+    <div class="bg-danger bg-gradient text-white rounded-4 shadow-sm p-4 mb-5 text-center">
+        <h1 class="display-5 fw-bold">
+            <i class="bi bi-trash3 me-2"></i> Usuń element stopki
+        </h1>
+        <p class="mb-0">Czy na pewno chcesz usunąć ten element? Ta akcja jest nieodwracalna.</p>
+    </div>
+
+    <div class="card shadow-sm rounded-4 border-0 mx-auto" style="max-width: 600px;">
+        <div style="height: 8px; background: linear-gradient(90deg, #dc3545, #a71d2a);" class="rounded-top"></div>
+        <div class="card-body">
+            <h3 class="card-title fw-bold mb-4">Element: @Model.Key</h3>
+
+            <dl class="row mb-4">
+                <dt class="col-sm-4 text-secondary">Klucz (Key)</dt>
+                <dd class="col-sm-8">@Model.Key</dd>
+
+                <dt class="col-sm-4 text-secondary">Zawartość (Content)</dt>
+                <dd class="col-sm-8">@Model.Content</dd>
+
+                <dt class="col-sm-4 text-secondary">Kolejność (Order)</dt>
+                <dd class="col-sm-8">@Model.Order</dd>
+            </dl>
+
+            <form asp-action="Delete" method="post" class="d-flex gap-3">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger d-flex align-items-center gap-2 shadow-sm">
+                    <i class="bi bi-trash3-fill"></i> Usuń
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary d-flex align-items-center gap-2 shadow-sm">
+                    <i class="bi bi-arrow-left-circle"></i> Anuluj
+                </a>
+            </form>
+        </div>
+    </div>
+
+</div>

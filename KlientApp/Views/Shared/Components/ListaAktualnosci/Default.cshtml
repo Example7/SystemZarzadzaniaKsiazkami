@@ -1,0 +1,18 @@
+﻿@model KontoViewModel
+
+<h3>@Model.NaglowekAktualnosci</h3>
+@if (Model.News != null && Model.News.Any())
+{
+    <ul class="list-group mb-4">
+        @foreach (var aktualnosc in Model.News)
+        {
+            <li class="list-group-item">
+                <strong>@aktualnosc.Tytul:</strong> @aktualnosc.Tresc
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p class="text-muted">Brak aktualności do wyświetlenia.</p>
+}

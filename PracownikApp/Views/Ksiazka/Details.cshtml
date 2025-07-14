@@ -1,0 +1,69 @@
+﻿@model AppData.Data.Sklep.Ksiazka
+
+@{
+    ViewData["Title"] = "Szczegóły książki";
+}
+
+<div class="container py-5 min-vh-100">
+
+    <section class="text-center mb-5">
+        <div class="bg-info bg-gradient text-white rounded-5 shadow-lg py-4 px-3">
+            <h1 class="display-4 fw-bold">
+                <i class="bi bi-book me-3"></i> Szczegóły książki
+            </h1>
+            <p class="lead mb-0">Podgląd szczegółowych informacji o książce</p>
+        </div>
+    </section>
+
+    <article class="card shadow rounded-4 border-0 mx-auto" style="max-width: 700px;">
+        <div class="rounded-top" style="height: 6px; background: linear-gradient(to right, #0dcaf0, #6610f2);"></div>
+        <div class="card-body px-5 py-4">
+            <h2 class="card-title fw-semibold mb-4 text-primary">@Model.Tytul</h2>
+
+            <dl class="row mb-5">
+                <dt class="col-md-4 text-muted fw-semibold">ISBN</dt>
+                <dd class="col-md-8 fs-5">@Model.ISBN</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Cena</dt>
+                <dd class="col-md-8 fs-5">@Model.Cena.ToString("C")</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Opis</dt>
+                <dd class="col-md-8 fs-5">@Html.Raw(Model.Opis?.Replace("\n", "<br />") ?? "<em>Brak opisu</em>")</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Data wydania</dt>
+                <dd class="col-md-8 fs-5">@Model.DataWydania.ToString()</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Okładka</dt>
+                <dd class="col-md-8 fs-5">
+                    @if (!string.IsNullOrEmpty(Model.OkladkaUrl))
+                    {
+                        <img src="@Model.OkladkaUrl" alt="Okładka książki" style="max-height: 200px;" />
+                    }
+                    else
+                    {
+                        <em>Brak okładki</em>
+                    }
+                </dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Autor</dt>
+                <dd class="col-md-8 fs-5">@Html.Raw(Model.Autor?.ImieNazwisko ?? "<em>Brak danych</em>")</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Wydawnictwo</dt>
+                <dd class="col-md-8 fs-5">@Html.Raw(Model.Wydawnictwo?.Nazwa ?? "<em>Brak danych</em>")</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Kategoria</dt>
+                <dd class="col-md-8 fs-5">@Html.Raw(Model.Kategoria?.Nazwa ?? "<em>Brak danych</em>")</dd>
+            </dl>
+
+            <div class="d-flex justify-content-start gap-3">
+                <a asp-action="Edit" asp-route-id="@Model.KsiazkaID" class="btn btn-outline-info shadow-sm d-flex align-items-center gap-2">
+                    <i class="bi bi-pencil-square"></i> Edytuj książkę
+                </a>
+                <a asp-action="Index" class="btn btn-outline-secondary shadow-sm d-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-left-circle"></i> Wróć do listy
+                </a>
+            </div>
+        </div>
+    </article>
+
+</div>

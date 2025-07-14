@@ -1,0 +1,51 @@
+﻿@model AppData.Data.Sklep.Recenzja
+
+@{
+    ViewData["Title"] = "Szczegóły recenzji";
+}
+
+<div class="container py-5 min-vh-100">
+
+    <section class="text-center mb-5">
+        <div class="bg-info bg-gradient text-white rounded-5 shadow-lg py-4 px-3">
+            <h1 class="display-4 fw-bold">
+                <i class="bi bi-chat-text me-3"></i> Szczegóły recenzji
+            </h1>
+            <p class="lead mb-0">Podgląd szczegółowych informacji o recenzji</p>
+        </div>
+    </section>
+
+    <article class="card shadow rounded-4 border-0 mx-auto" style="max-width: 700px;">
+        <div class="rounded-top" style="height: 6px; background: linear-gradient(to right, #0dcaf0, #6610f2);"></div>
+        <div class="card-body px-5 py-4">
+            <h2 class="card-title fw-semibold mb-4 text-primary">Recenzja #@Model.RecenzjaID</h2>
+
+            <dl class="row mb-5">
+                <dt class="col-md-4 text-muted fw-semibold">Ocena</dt>
+                <dd class="col-md-8 fs-5">@Model.Ocena</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Treść</dt>
+                <dd class="col-md-8 fs-5">@Model.Tresc</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Data dodania</dt>
+                <dd class="col-md-8 fs-5">@Model.DataDodania.ToString("yyyy-MM-dd")</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Książka (ISBN)</dt>
+                <dd class="col-md-8 fs-5">@Html.Raw(Model.Ksiazka?.ISBN ?? "<em>Brak danych</em>")</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Użytkownik</dt>
+                <dd class="col-md-8 fs-5">@Html.Raw(Model.Uzytkownik?.Email ?? "<em>Brak danych</em>")</dd>
+            </dl>
+
+            <div class="d-flex justify-content-start gap-3">
+                <a asp-action="Edit" asp-route-id="@Model.RecenzjaID" class="btn btn-outline-info shadow-sm d-flex align-items-center gap-2">
+                    <i class="bi bi-pencil-square"></i> Edytuj recenzję
+                </a>
+                <a asp-action="Index" class="btn btn-outline-secondary shadow-sm d-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-left-circle"></i> Wróć do listy
+                </a>
+            </div>
+        </div>
+    </article>
+
+</div>

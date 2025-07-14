@@ -1,0 +1,65 @@
+﻿@model AppData.Data.CMS.TrescStrony
+
+@{
+    ViewData["Title"] = "Dodaj nową treść strony";
+}
+
+<div class="container py-5 min-vh-100">
+
+    <div class="bg-success bg-gradient text-white rounded-4 shadow-sm p-4 mb-4 text-center">
+        <h1 class="display-5 fw-bold">
+            <i class="bi bi-plus-square me-2"></i> Dodaj nową treść strony CMS
+        </h1>
+        <p class="mb-0">Wypełnij formularz, aby dodać nową zawartość</p>
+    </div>
+
+    <div class="card shadow-sm rounded-4 border-0 mx-auto" style="max-width: 600px;">
+        <div style="height: 8px; background: linear-gradient(90deg, #198754, #0b5e34);" class="rounded-top"></div>
+        <div class="card-body">
+
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Klucz" class="form-label"></label>
+                    <input asp-for="Klucz" class="form-control" />
+                    <span asp-validation-for="Klucz" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Wartosc" class="form-label"></label>
+                    <textarea asp-for="Wartosc" class="form-control" rows="6"></textarea>
+                    <span asp-validation-for="Wartosc" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DataModyfikacji" class="form-label"></label>
+                    <input asp-for="DataModyfikacji" class="form-control" type="datetime-local" />
+                    <span asp-validation-for="DataModyfikacji" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="KtoZmienil" class="form-label"></label>
+                    <input asp-for="KtoZmienil" class="form-control" />
+                    <span asp-validation-for="KtoZmienil" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <input type="submit" value="Dodaj" class="btn btn-success d-flex align-items-center gap-2 shadow-sm" />
+                    <a asp-action="Index" class="btn btn-outline-secondary d-flex align-items-center gap-2 shadow-sm">
+                        <i class="bi bi-arrow-left-circle"></i> Powrót do listy
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,67 @@
+﻿@model KlientApp.Models.KontaktViewModel
+
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row mb-5 text-center">
+            <h2 class="fw-bold mb-3">@Model.HeaderTytul</h2>
+            <p class="text-muted fs-5">@Model.HeaderOpis</p>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-5">
+                <h4 class="fw-bold mb-3">@Model.HeaderDaneKontaktowe</h4>
+                <p><i class="fas fa-map-marker-alt me-2 text-primary"></i> @Model.Adres</p>
+                <p><i class="fas fa-envelope me-2 text-primary"></i> @Model.Email</p>
+                <p><i class="fas fa-phone me-2 text-primary"></i> @Model.Telefon</p>
+
+                <h5 class="fw-bold mt-4">@Model.HeaderGodzinyOtwarcia</h5>
+                <p>@Model.GodzinyOtwarcia</p>
+
+                <div class="mt-4">
+                    <h5 class="fw-bold mb-2">@Model.HeaderZnajdzNas</h5>
+                    @if (!string.IsNullOrEmpty(Model.FbLink))
+                    {
+                        <a href="@Model.FbLink" class="me-3 text-primary" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.InstagramLink))
+                    {
+                        <a href="@Model.InstagramLink" class="me-3 text-primary" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.TwitterLink))
+                    {
+                        <a href="@Model.TwitterLink" class="text-primary" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h4 class="fw-bold mb-3">@Model.HeaderFormularz</h4>
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">@Model.ImieNazwiskoLabel</label>
+                        <input type="text" class="form-control" id="name" placeholder="Wpisz swoje imię i nazwisko" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">@Model.EmailLabel</label>
+                        <input type="email" class="form-control" id="email" placeholder="np. jan.kowalski@email.com" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">@Model.WiadomoscLabel</label>
+                        <textarea class="form-control" id="message" rows="5" placeholder="Napisz wiadomość..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary px-4">@Model.PrzyciskWyslij</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col">
+                <div class="ratio ratio-16x9 shadow rounded">
+                    <iframe src="@Model.MapEmbedUrl"
+                            width="600" height="450" style="border:0;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

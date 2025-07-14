@@ -1,0 +1,20 @@
+﻿@model KsiazkaRokuViewModel
+
+@if (Model.Ksiazka != null)
+{
+    <div class="container my-5 py-5 px-4 rounded-4" style="background: linear-gradient(to right, #e0faff, #c2e9fb); box-shadow: 0 0 30px rgba(0,0,0,0.05);">
+        <div class="row align-items-center g-4">
+            <div class="col-12 col-md-6">
+                <img src="@Url.Content(Model.Ksiazka.OkladkaUrl ?? "~/content/brak.jpg")" alt="@Model.Ksiazka.Tytul" class="w-100" style="height: 500px; object-fit: contain;">
+            </div>
+            <div class="col-12 col-md-6 text-center text-md-start">
+                <h5 class="text-uppercase text-primary fw-bold mb-2" style="letter-spacing: 2px;">@Model.Naglowek</h5>
+                <h1 class="display-5 fw-bold text-dark mb-3">@Model.Ksiazka.Tytul</h1>
+                <p class="text-muted mb-4">@Model.Ksiazka.Opis</p>
+                <a href="/ksiazki/szczegoly/@Model.Ksiazka.KsiazkaID" class="btn btn-lg btn-warning text-white fw-semibold px-4 py-2 shadow-sm" style="border-radius: 30px; transition: 0.3s;">
+                    Kup teraz &#8594;
+                </a>
+            </div>
+        </div>
+    </div>
+}

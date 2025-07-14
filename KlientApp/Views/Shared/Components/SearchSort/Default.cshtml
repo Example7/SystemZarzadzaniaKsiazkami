@@ -1,0 +1,37 @@
+﻿@model KlientApp.Models.SearchSortViewModel
+
+<div class="card bg-info text-dark shadow-sm p-4 mb-4">
+    <div class="row gy-3 align-items-center">
+        <div class="col-md-6 col-lg-4">
+            <form method="get" class="d-flex align-items-center">
+                <i class="fas fa-search text-dark me-2"></i>
+                <input type="search" name="search" class="form-control" placeholder="Wyszukaj książkę..." value="@Model.Search" />
+                <input type="hidden" name="sort" value="@Model.Sort" />
+                <button type="submit" class="btn btn-primary ms-2">Szukaj</button>
+            </form>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <form id="sortForm" method="get" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="search" value="@Model.Search" />
+                <select class="form-select" name="sort" onchange="this.form.submit()">
+                    @foreach (var option in Model.SortOptions ?? new Dictionary<string, string>())
+                    {
+                        if (Model.Sort == option.Key)
+                        {
+                            <option value="@option.Key" selected="selected">@option.Value</option>
+                        }
+                        else
+                        {
+                            <option value="@option.Key">@option.Value</option>
+                        }
+                    }
+                </select>
+            </form>
+        </div>
+
+        <div class="col-lg-5 d-none d-lg-block text-end">
+            <small class="text-dark">Sortowanie i wyszukiwanie książek</small>
+        </div>
+    </div>
+</div>

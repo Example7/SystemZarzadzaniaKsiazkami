@@ -1,0 +1,11 @@
+﻿@{
+    var placeholder = ViewData["Placeholder"] as string ?? "Szukaj...";
+    var inputName = ViewData["InputName"] as string ?? "searchTerm";
+    var formAction = ViewData["FormAction"] as string ?? "";
+    var searchTerm = Context.Request.Query[inputName].ToString() ?? "";
+}
+
+<form method="get" action="@formAction" class="d-flex mb-4" style="max-width: 320px;">
+    <input type="search" name="@inputName" class="form-control" placeholder="@placeholder" value="@searchTerm" />
+    <button type="submit" class="btn btn-primary ms-2">Szukaj</button>
+</form>

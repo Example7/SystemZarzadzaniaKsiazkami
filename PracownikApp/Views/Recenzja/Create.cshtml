@@ -1,0 +1,73 @@
+﻿@model AppData.Data.Sklep.Recenzja
+
+@{
+    ViewData["Title"] = "Dodaj nową recenzję";
+}
+
+<div class="container py-5 min-vh-100">
+
+    <div class="bg-primary bg-gradient text-white rounded-4 shadow-sm p-4 mb-4 text-center">
+        <h1 class="display-5 fw-bold">
+            <i class="bi bi-plus-square me-2"></i> Dodaj nową recenzję
+        </h1>
+        <p class="mb-0">Wypełnij formularz, aby dodać recenzję do systemu</p>
+    </div>
+
+    <div class="card shadow-sm rounded-4 border-0 mx-auto" style="max-width: 600px;">
+        <div style="height: 8px; background: linear-gradient(90deg, #0d6efd, #0a58ca);" class="rounded-top"></div>
+        <div class="card-body">
+
+            <form asp-action="Create" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Ocena" class="form-label"></label>
+                    <input asp-for="Ocena" type="number" min="1" max="5" class="form-control" />
+                    <span asp-validation-for="Ocena" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Tresc" class="form-label"></label>
+                    <textarea asp-for="Tresc" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Tresc" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DataDodania" class="form-label"></label>
+                    <input asp-for="DataDodania" type="date" class="form-control" />
+                    <span asp-validation-for="DataDodania" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="KsiazkaID" class="form-label"></label>
+                    <select asp-for="KsiazkaID" class="form-select" asp-items="ViewBag.KsiazkaID"></select>
+                    <span asp-validation-for="KsiazkaID" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="UzytkownikID" class="form-label"></label>
+                    <select asp-for="UzytkownikID" class="form-select" asp-items="ViewBag.UzytkownikID"></select>
+                    <span asp-validation-for="UzytkownikID" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="submit" class="btn btn-primary d-flex align-items-center gap-2 shadow-sm">
+                        <i class="bi bi-check2-circle"></i> Dodaj recenzję
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary d-flex align-items-center gap-2 shadow-sm">
+                        <i class="bi bi-arrow-left-circle"></i> Powrót do listy
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,80 @@
+﻿@model AppData.Data.Sklep.Uzytkownik
+
+@{
+    ViewData["Title"] = "Edytuj użytkownika";
+}
+
+<div class="container py-5 min-vh-100">
+
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">
+            <i class="bi bi-pencil-square me-2"></i> Edytuj użytkownika
+        </h1>
+        <p class="text-muted">Zmieniaj dane i uprawnienia użytkownika</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+
+            <form asp-action="Edit" novalidate>
+                <input type="hidden" asp-for="UzytkownikID" />
+
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <div class="mb-4">
+                    <label asp-for="Email" class="form-label fw-semibold"></label>
+                    <input asp-for="Email" type="email" class="form-control form-control-lg" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="HasloHash" class="form-label fw-semibold"></label>
+                    <input asp-for="HasloHash" type="text" class="form-control form-control-lg" autocomplete="off" />
+                    <span asp-validation-for="HasloHash" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Imie" class="form-label fw-semibold"></label>
+                    <input asp-for="Imie" class="form-control form-control-lg" />
+                    <span asp-validation-for="Imie" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Nazwisko" class="form-label fw-semibold"></label>
+                    <input asp-for="Nazwisko" class="form-control form-control-lg" />
+                    <span asp-validation-for="Nazwisko" class="text-danger"></span>
+                </div>
+
+                <div class="form-check mb-4">
+                    <input class="form-check-input" asp-for="CzyAdmin" type="checkbox" id="CzyAdmin" />
+                    <label class="form-check-label fw-semibold" for="CzyAdmin">
+                        @Html.DisplayNameFor(model => model.CzyAdmin)
+                    </label>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="DataRejestracji" class="form-label fw-semibold"></label>
+                    <input asp-for="DataRejestracji" type="datetime-local" class="form-control form-control-lg" />
+                    <span asp-validation-for="DataRejestracji" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="submit" class="btn btn-primary btn-lg d-flex align-items-center gap-2 shadow-sm">
+                        <i class="bi bi-check2-circle"></i> Zapisz zmiany
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary btn-lg d-flex align-items-center gap-2 shadow-sm">
+                        <i class="bi bi-x-circle"></i> Anuluj
+                    </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,61 @@
+﻿@model AppData.Data.CMS.FooterItem
+
+@{
+    ViewData["Title"] = "Edytuj element stopki";
+}
+
+<div class="container py-5 min-vh-100">
+
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">
+            <i class="bi bi-pencil-square me-2"></i> Edytuj element stopki
+        </h1>
+        <p class="text-muted">Zmieniaj szczegóły wybranego elementu stopki</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+
+            <form asp-action="Edit" novalidate>
+                <input type="hidden" asp-for="Id" />
+
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <div class="mb-4">
+                    <label asp-for="Key" class="form-label fw-semibold"></label>
+                    <input asp-for="Key" class="form-control form-control-lg" />
+                    <span asp-validation-for="Key" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Content" class="form-label fw-semibold"></label>
+                    <input asp-for="Content" class="form-control form-control-lg" />
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Order" class="form-label fw-semibold"></label>
+                    <input asp-for="Order" type="number" class="form-control form-control-lg" />
+                    <span asp-validation-for="Order" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="submit" class="btn btn-primary btn-lg d-flex align-items-center gap-2 shadow-sm">
+                        <i class="bi bi-check2-circle"></i> Zapisz zmiany
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary btn-lg d-flex align-items-center gap-2 shadow-sm">
+                        <i class="bi bi-x-circle"></i> Anuluj
+                    </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

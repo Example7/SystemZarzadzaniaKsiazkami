@@ -1,0 +1,14 @@
+﻿@model IEnumerable<AppData.Data.CMS.Strona>
+
+<div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+	<ul class="navbar-nav d-flex flex-row gap-3">
+		@foreach (var item in Model)
+		{
+			<li class="nav-item">
+				<a class="nav-link text-light fw-bold text-nowrap"
+				   asp-controller="Home"
+				   asp-action="@item.Tytul">@item.LinkTytul</a>
+			</li>
+		}
+	</ul>
+</div>

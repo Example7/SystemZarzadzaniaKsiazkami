@@ -1,0 +1,66 @@
+﻿@{
+	ViewData["Title"] = "Strona główna";
+}
+
+<div class="container py-4">
+	<div class="row mb-4">
+		<div class="col-12 text-center">
+			<div class="bg-primary text-white p-5 rounded-4 shadow-sm">
+				<h2>Witaj w panelu zarządzania!</h2>
+				<p>Wybierz jedną z opcji poniżej, aby zarządzać swoją ofertą.</p>
+			</div>
+		</div>
+	</div>
+	<div class="row g-4">
+		<div class="col-md-4">
+			<div class="p-4 bg-light rounded-4 shadow-sm h-100 text-center">
+				<i class="fas fa-box fa-2x text-primary mb-3"></i>
+				<h5>Zarządzaj produktami</h5>
+				<p>Dodawaj, edytuj i usuwaj książki z oferty.</p>
+				<a class="btn btn-primary mt-2" asp-controller="Ksiazka" asp-action="Index">Przejdź</a>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="p-4 bg-light rounded-4 shadow-sm h-100 text-center">
+				<i class="fas fa-shopping-cart fa-2x text-primary mb-3"></i>
+				<h5>Zamówienia</h5>
+				<p>Przeglądaj i aktualizuj statusy zamówień klientów.</p>
+				<a class="btn btn-primary mt-2" asp-controller="Zamowienie" asp-action="Index">Przejdź</a>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="p-4 bg-light rounded-4 shadow-sm h-100 text-center">
+				<i class="fa-solid fa-users fa-2x text-primary mb-3"></i>
+				<h5>Klienci</h5>
+				<p>Zobacz listę klientów i ich historię zakupów.</p>
+				<a class="btn btn-primary mt-2" asp-controller="Uzytkownik" asp-action="Index">Przejdź</a>
+			</div>
+		</div>
+	</div>
+	<div class="row g-4 mt-4">
+		<div class="col-md-6">
+			<div class="bg-light p-4 rounded-4 shadow-sm">
+				<h5>Statystyki sprzedaży</h5>
+				<canvas id="salesChart"></canvas>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="bg-light p-4 rounded-4 shadow-sm">
+				<h5>Wykres użytkowników</h5>
+				<canvas id="usersChart"></canvas>
+			</div>
+		</div>
+	</div>
+	<div class="row mt-4">
+		<div class="col-12">
+			<h5>Najważniejsze aktualności</h5>
+			<ul class="list-group">
+				<li class="list-group-item">Aktualność 1: Nowe książki w ofercie!</li>
+				<li class="list-group-item">Aktualność 2: Nowe funkcje w systemie!</li>
+				<li class="list-group-item">Aktualność 3: Zmiany w polityce prywatności.</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+

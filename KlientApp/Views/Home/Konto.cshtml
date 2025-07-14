@@ -1,0 +1,49 @@
+﻿@model KontoViewModel
+
+@{
+    ViewData["Title"] = "Twoje konto";
+}
+
+<div class="container-fluid p-4">
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        @await Component.InvokeAsync("PowitanieUzytkownika")
+
+        @await Component.InvokeAsync("KartaDanychUzytkownika", new { model = Model })
+
+        @await Component.InvokeAsync("ListaAktualnosci", new { model = Model })
+    }
+    else
+    {
+        <div class="alert alert-warning p-4">
+            Witaj! Zaloguj się lub zarejestruj, aby uzyskać dostęp do pełnych funkcji serwisu: historia zamówień, personalizacja, szybki kontakt i więcej.
+        </div>
+    }
+
+    @if (ViewBag.News != null && ((List<string>)ViewBag.News).Count > 0)
+    {
+        <div class="mb-4">
+            <h3>Aktualności globalne</h3>
+            <ul class="list-group">
+                @foreach (var news in (List<string>)ViewBag.News)
+                {
+                    <li class="list-group-item">@news</li>
+                }
+            </ul>
+        </div>
+    }
+
+    @if (!User.Identity?.IsAuthenticated ?? false)
+    {
+        @await Component.InvokeAsync("DostepDoKonta")
+    }
+
+    <hr />
+
+    <h3>@Model.NaglowekFaq</h3>
+    @await Component.InvokeAsync("Faq")
+
+    @await Component.InvokeAsync("FunkcjeKonta")
+
+    @await Component.InvokeAsync("PomocIPrywatnosc")
+</div>

@@ -1,0 +1,83 @@
+﻿@model AppData.Data.Sklep.Kupon
+
+@{
+    ViewData["Title"] = "Edytuj kupon";
+}
+
+<div class="container py-5 min-vh-100">
+
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">
+            <i class="bi bi-pencil-square me-2"></i> Edytuj kupon
+        </h1>
+        <p class="text-muted">Zmieniaj szczegóły wybranego kuponu</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+
+            <form asp-action="Edit" novalidate>
+                <input type="hidden" asp-for="KuponID" />
+
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <div class="mb-4">
+                    <label asp-for="Kod" class="form-label fw-semibold"></label>
+                    <input asp-for="Kod" class="form-control form-control-lg" />
+                    <span asp-validation-for="Kod" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="TypZnizki" class="form-label fw-semibold"></label>
+                    @{
+                        var typZnizkiList = ViewData["TypZnizki"] as IEnumerable<SelectListItem> ?? Enumerable.Empty<SelectListItem>();
+                    }
+                    <select asp-for="TypZnizki" asp-items="typZnizkiList" class="form-select form-select-lg"></select>
+
+                    <span asp-validation-for="TypZnizki" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="WartoscZnizki" class="form-label fw-semibold"></label>
+                    <input asp-for="WartoscZnizki" type="number" step="0.01" class="form-control form-control-lg" />
+                    <span asp-validation-for="WartoscZnizki" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="DataWaznosci" class="form-label fw-semibold"></label>
+                    <input asp-for="DataWaznosci" type="date" class="form-control form-control-lg" />
+                    <span asp-validation-for="DataWaznosci" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="MinimalnaWartosc" class="form-label fw-semibold"></label>
+                    <input asp-for="MinimalnaWartosc" type="number" step="0.01" class="form-control form-control-lg" />
+                    <span asp-validation-for="MinimalnaWartosc" class="text-danger"></span>
+                </div>
+
+                <div class="form-check mb-4">
+                    <input asp-for="CzyAktywny" class="form-check-input" />
+                    <label asp-for="CzyAktywny" class="form-check-label fw-semibold"></label>
+                    <span asp-validation-for="CzyAktywny" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="submit" class="btn btn-primary btn-lg d-flex align-items-center gap-2 shadow-sm">
+                        <i class="bi bi-check2-circle"></i> Zapisz zmiany
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary btn-lg d-flex align-items-center gap-2 shadow-sm">
+                        <i class="bi bi-x-circle"></i> Anuluj
+                    </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,54 @@
+﻿@model AppData.Data.CMS.Strona
+
+@{
+    ViewData["Title"] = "Szczegóły strony";
+}
+
+<div class="container py-5 min-vh-100">
+
+    <section class="text-center mb-5">
+        <div class="bg-info bg-gradient text-white rounded-5 shadow-lg py-4 px-3">
+            <h1 class="display-4 fw-bold">
+                <i class="bi bi-file-earmark-text me-3"></i> Szczegóły strony
+            </h1>
+            <p class="lead mb-0">Szczegółowy podgląd zawartości i ustawień strony CMS</p>
+        </div>
+    </section>
+
+    <article class="card shadow rounded-4 border-0">
+        <div class="rounded-top" style="height: 6px; background: linear-gradient(to right, #0dcaf0, #6610f2);"></div>
+        <div class="card-body px-5 py-4">
+            <h2 class="card-title fw-semibold mb-4 text-primary">@Model.Tytul</h2>
+
+            <dl class="row mb-5">
+                <dt class="col-md-4 text-muted fw-semibold">Link tytuł</dt>
+                <dd class="col-md-8 fs-5">@Model.LinkTytul</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Pozycja</dt>
+                <dd class="col-md-8 fs-5">@Model.Pozycja</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold align-self-start">Treść</dt>
+                <dd class="col-md-8 fs-6" style="white-space: pre-wrap; line-height: 1.4;">
+                    @if (!string.IsNullOrWhiteSpace(Model.Tresc))
+                    {
+                        @Html.Raw(Model.Tresc)
+                    }
+                    else
+                    {
+                        <span class="text-secondary fst-italic">Brak treści do wyświetlenia</span>
+                    }
+                </dd>
+            </dl>
+
+            <div class="d-flex justify-content-start gap-3">
+                <a asp-action="Edit" asp-route-id="@Model.IdStrony" class="btn btn-outline-info shadow-sm d-flex align-items-center gap-2">
+                    <i class="bi bi-pencil-square"></i> Edytuj stronę
+                </a>
+                <a asp-action="Index" class="btn btn-outline-secondary shadow-sm d-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-left-circle"></i> Wróć do listy
+                </a>
+            </div>
+        </div>
+    </article>
+
+</div>

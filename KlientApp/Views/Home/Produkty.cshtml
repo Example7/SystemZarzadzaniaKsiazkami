@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Produkty";
+    var search = ViewBag.Search as string;
+    var sort = ViewBag.Sort as string;
+}
+
+<div class="container py-5">
+
+    @await Component.InvokeAsync("SearchSort", new { search = search, sort = sort })
+
+    @await Component.InvokeAsync("Ksiazki", new { search = search, sort = sort })
+
+</div>

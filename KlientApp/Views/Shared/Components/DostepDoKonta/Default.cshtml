@@ -1,0 +1,24 @@
+﻿<div class="row my-4 g-3">
+    <div class="col-md-6">
+        <div class="card border-primary shadow-sm h-100">
+            <div class="card-body text-center d-flex flex-column justify-content-center">
+                <h4 class="card-title mb-3">Masz już konto?</h4>
+                <p class="card-text mb-4">Zaloguj się, aby kontynuować.</p>
+                <a asp-controller="Account" asp-action="Login" class="btn btn-primary mx-auto">
+                    <i class="fas fa-sign-in-alt me-2"></i> Zaloguj się
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card border-success shadow-sm h-100">
+            <div class="card-body text-center d-flex flex-column justify-content-center">
+                <h4 class="card-title mb-3">Nowy użytkownik?</h4>
+                <p class="card-text mb-4">Utwórz konto i dołącz do nas!</p>
+                <a asp-controller="Account" asp-action="Register" class="btn btn-success mx-auto">
+                    <i class="fas fa-user-plus me-2"></i> Zarejestruj się
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

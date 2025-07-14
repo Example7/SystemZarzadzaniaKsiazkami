@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"]</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/KlientApp.styles.css" asp-append-version="true" />
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body style="font-family:Poppins, sans-serif">
+	<div style="background-image: radial-gradient(circle at bottom, #1f3b57, #0d1b2a);" class="p-0 m-0">
+		<header style="max-width:1500px" class="container">
+			@await Component.InvokeAsync("Navbar")
+		</header>
+	</div>
+	<div style="background: linear-gradient(to right, #89f7fe, #66a6ff);" class="p-0 m-0">
+		<div class="container">
+			<main role="main" class="pb-3">
+				@RenderBody()
+			</main>
+		</div>
+		@await Component.InvokeAsync("Sponsor")
+	</div>
+	
+	@await Component.InvokeAsync("Footer")
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

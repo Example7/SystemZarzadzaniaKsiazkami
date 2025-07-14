@@ -1,0 +1,97 @@
+﻿@model IEnumerable<AppData.Data.Sklep.Ksiazka>
+
+@{
+    ViewData["Title"] = "Zarządzanie książkami";
+    var items = Model.ToList();
+}
+
+<div class="py-5 min-vh-100 container">
+
+    <div class="bg-primary bg-gradient text-white rounded-4 shadow-sm p-4 mb-5 text-center">
+        <h1 class="display-5 fw-bold">
+            <i class="bi bi-book-half me-2"></i> Zarządzanie książkami
+        </h1>
+        <p class="mb-0">Lista książek w ofercie sklepu</p>
+    </div>
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 mb-4">
+
+        <p class="text-muted m-0 order-1 order-md-1">
+            Łączna liczba książek: <strong>@items.Count</strong>
+        </p>
+
+        <div class="order-2 order-md-2 d-inline-flex align-items-center" style="max-width: 320px;">
+            @await Component.InvokeAsync("Search", new { placeholder = "Szukaj książki...", inputName = "searchTerm", formAction = Url.Action("Index") })
+        </div>
+
+        <a class="btn btn-dark rounded-pill px-4 py-2 shadow d-flex align-items-center gap-2 order-3" asp-action="Create">
+            <i class="bi bi-plus-circle"></i> Dodaj książkę
+        </a>
+
+    </div>
+
+    @if (!items.Any())
+    {
+        <div class="alert alert-warning text-center shadow-sm">
+            <i class="bi bi-exclamation-circle me-2"></i> Brak zdefiniowanych książek.
+        </div>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="cardContainer">
+            @foreach (var item in items)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm rounded-4 border-0 hover-scale position-relative card-item">
+                        <div style="height: 6px; background: linear-gradient(to right, #0d6efd, #6610f2);"></div>
+
+                        <div class="card-body d-flex flex-column p-4">
+                            <h5 class="fw-bold text-dark mb-2">
+                                <i class="bi bi-book me-1"></i> @item.Tytul
+                            </h5>
+
+                            <p class="text-muted mb-2"><strong>ISBN:</strong> @item.ISBN</p>
+                            <p class="mb-2 text-truncate"><strong>Opis:</strong> @item.Opis</p>
+                            <p class="mb-2"><strong>Cena:</strong> @item.Cena zł</p>
+                            <p class="mb-2"><strong>Data wydania:</strong> @(item.DataWydania?.ToShortDateString() ?? "Brak")</p>
+
+
+                            @if (!string.IsNullOrEmpty(item.OkladkaUrl))
+                            {
+                                <img src="@item.OkladkaUrl" alt="Okładka" class="img-fluid rounded mb-3" style="max-height: 180px; object-fit: cover;" />
+                            }
+
+                            <p class="small text-muted mb-1"><strong>Autor:</strong> @item.Autor?.ImieNazwisko</p>
+                            <p class="small text-muted mb-1"><strong>Wydawnictwo:</strong> @item.Wydawnictwo?.Nazwa</p>
+                            <p class="small text-muted mb-3"><strong>Kategoria:</strong> @item.Kategoria?.Nazwa</p>
+
+                            <div class="d-flex justify-content-between align-items-center pt-3 border-top mt-auto">
+                                <div class="btn-group btn-group-sm">
+                                    <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.KsiazkaID" title="Edytuj książkę">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.KsiazkaID" title="Szczegóły">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.KsiazkaID" title="Usuń książkę">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .hover-scale {
+        transition: transform 0.2s ease;
+    }
+
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+</style>

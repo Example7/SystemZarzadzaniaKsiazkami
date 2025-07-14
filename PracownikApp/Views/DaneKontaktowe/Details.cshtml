@@ -1,0 +1,48 @@
+﻿@model AppData.Data.Sklep.DaneKontaktowe
+
+@{
+    ViewData["Title"] = "Szczegóły danych kontaktowych";
+}
+
+<div class="container py-5 min-vh-100">
+
+    <section class="text-center mb-5">
+        <div class="bg-primary bg-gradient text-white rounded-5 shadow-lg py-4 px-3">
+            <h1 class="display-4 fw-bold">
+                <i class="bi bi-person-lines-fill me-3"></i> Dane kontaktowe użytkownika
+            </h1>
+            <p class="lead mb-0">Szczegółowe informacje kontaktowe przypisane do konta</p>
+        </div>
+    </section>
+
+    <article class="card shadow rounded-4 border-0 mx-auto" style="max-width: 700px;">
+        <div class="rounded-top" style="height: 6px; background: linear-gradient(to right, #0d6efd, #6610f2);"></div>
+        <div class="card-body px-5 py-4">
+            <h2 class="card-title fw-semibold mb-4 text-primary">Kontakt dla: @Html.Raw(Model.Uzytkownik?.Email ?? "<em>Brak danych</em>")</h2>
+
+            <dl class="row mb-5">
+                <dt class="col-md-4 text-muted fw-semibold">Adres</dt>
+                <dd class="col-md-8 fs-5">@Model.Adres</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Kod pocztowy</dt>
+                <dd class="col-md-8 fs-5">@Model.KodPocztowy</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Miasto</dt>
+                <dd class="col-md-8 fs-5">@Model.Miasto</dd>
+
+                <dt class="col-md-4 text-muted fw-semibold">Telefon</dt>
+                <dd class="col-md-8 fs-5">@Model.Telefon</dd>
+            </dl>
+
+            <div class="d-flex justify-content-start gap-3">
+                <a asp-action="Edit" asp-route-id="@Model.UzytkownikID" class="btn btn-outline-primary shadow-sm d-flex align-items-center gap-2">
+                    <i class="bi bi-pencil-square"></i> Edytuj dane
+                </a>
+                <a asp-action="Index" class="btn btn-outline-secondary shadow-sm d-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-left-circle"></i> Wróć do listy
+                </a>
+            </div>
+        </div>
+    </article>
+
+</div>

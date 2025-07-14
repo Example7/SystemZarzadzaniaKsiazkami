@@ -1,0 +1,66 @@
+﻿@model IList<AppData.Data.CMS.FooterItem>
+
+@{
+    string GetValue(string key) => Model.FirstOrDefault(x => x.Key == key)?.Content ?? "";
+
+    var images = new[]
+    {
+        new { Url = GetValue("Footer.Image1.Url"), Alt = GetValue("Footer.Image1.Alt") },
+        new { Url = GetValue("Footer.Image2.Url"), Alt = GetValue("Footer.Image2.Alt") },
+    };
+
+    var links = new[]
+    {
+        new { Text = GetValue("Footer.Link1.Text"), Url = GetValue("Footer.Link1.Url") },
+        new { Text = GetValue("Footer.Link2.Text"), Url = GetValue("Footer.Link2.Url") },
+        new { Text = GetValue("Footer.Link3.Text"), Url = GetValue("Footer.Link3.Url") },
+    };
+
+    var socials = new[]
+    {
+        new { Text = GetValue("Footer.Social1.Text"), Url = GetValue("Footer.Social1.Url") },
+        new { Text = GetValue("Footer.Social2.Text"), Url = GetValue("Footer.Social2.Url") },
+        new { Text = GetValue("Footer.Social3.Text"), Url = GetValue("Footer.Social3.Url") },
+        new { Text = GetValue("Footer.Social4.Text"), Url = GetValue("Footer.Social4.Url") },
+    };
+}
+
+<footer class="text-light pt-3 pb-1" style="background-image: radial-gradient(circle at bottom, #1f3b57, #0d1b2a);">
+    <div class="container">
+        <div class="row text-center pt-2">
+            <div class="col-12 col-md-4 mb-1">
+                <h3 class="mb-3">@GetValue("Footer.Header1")</h3>
+                <p class="text-muted m-0">@GetValue("Footer.SubHeader1")</p>
+                <div class="d-flex justify-content-evenly">
+                    @foreach (var img in images.Where(i => !string.IsNullOrWhiteSpace(i.Url)))
+                    {
+                        <img src="@img.Url" alt="@img.Alt" class="hover-zoom" style="object-fit: contain; height: 75px;" />
+                    }
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4 mb-1">
+                <h3 class="mb-3">@GetValue("Footer.Header2")</h3>
+                <ul class="list-unstyled">
+                    @foreach (var link in links.Where(l => !string.IsNullOrWhiteSpace(l.Text)))
+                    {
+                        <li><a href="@link.Url" class="text-muted text-decoration-none">@link.Text</a></li>
+                    }
+                </ul>
+            </div>
+
+            <div class="col-12 col-md-4 mb-1">
+                <h3 class="mb-3">@GetValue("Footer.Header3")</h3>
+                <ul class="list-unstyled">
+                    @foreach (var social in socials.Where(s => !string.IsNullOrWhiteSpace(s.Text)))
+                    {
+                        <li><a href="@social.Url" class="text-muted text-decoration-none">@social.Text</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <hr class="border-light">
+        <p class="text-center mb-0">@GetValue("Footer.Copyright")</p>
+    </div>
+</footer>

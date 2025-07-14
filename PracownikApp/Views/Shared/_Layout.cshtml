@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>@ViewData["Title"]</title>
+	<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/PracownikApp.styles.css" asp-append-version="true" />
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="font-poppins" style="background-image: radial-gradient(circle at bottom, #1f3b57, #0d1b2a); margin:0; padding:0;">
+
+	<header class="container">
+		<nav class="navbar navbar-expand-lg navbar-light">
+			<div class="container-fluid">
+				<a class="navbar-brand fw-bold text-light" asp-area="" asp-controller="Home" asp-action="Index">Główny panel</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+					<div class="offcanvas-header">
+						<h5 class="offcanvas-title text-light" id="offcanvasNavbarLabel">Menu</h5>
+						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					</div>
+					<div class="offcanvas-body">
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle text-light fw-bold" href="#" id="menuStrony" data-bs-toggle="dropdown">
+									<i class="fas fa-home"></i> Strony
+								</a>
+								<ul class="dropdown-menu" style="background-color: #1d2a3d;">
+									<li><a class="dropdown-item text-light" asp-controller="Strona" asp-action="Index">Strony</a></li>
+									<li><a class="dropdown-item text-light" asp-controller="TrescStrony" asp-action="Index">Treść strony</a></li>
+									<li><a class="dropdown-item text-light" asp-controller="Aktualnosc" asp-action="Index">Aktualności</a></li>
+									<li><a class="dropdown-item text-light" asp-controller="Sponsor" asp-action="Index">Sponsorzy</a></li>
+									<li><a class="dropdown-item text-light" asp-controller="FooterItem" asp-action="Index">Footer</a></li>
+								</ul>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle text-light fw-bold" href="#" id="menuKsiegarnia" data-bs-toggle="dropdown">
+									<i class="fas fa-book"></i> Księgarnia
+								</a>
+								<ul class="dropdown-menu" style="background-color: #1d2a3d;">
+									<li><a class="dropdown-item text-light" asp-controller="Ksiazka" asp-action="Index">Książki</a></li>
+									<li><a class="dropdown-item text-light" asp-controller="Kategoria" asp-action="Index">Kategorie</a></li>
+									<li><a class="dropdown-item text-light" asp-controller="Autor" asp-action="Index">Autorzy</a></li>
+									<li><a class="dropdown-item text-light" asp-controller="Wydawnictwo" asp-action="Index">Wydawnictwa</a></li>
+									<li><a class="dropdown-item text-light" asp-controller="Recenzja" asp-action="Index">Recenzje</a></li>
+									<li><a class="dropdown-item text-light" asp-controller="DaneKontaktowe" asp-action="Index">Dane kontaktowe</a></li>
+								</ul>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle text-light fw-bold" href="#" id="menuZamowienia" data-bs-toggle="dropdown">
+									<i class="fas fa-shopping-cart"></i> Zamówienia
+								</a>
+								<ul class="dropdown-menu" style="background-color: #1d2a3d;">
+									<li><a class="dropdown-item text-light" asp-controller="Zamowienie" asp-action="Index">Zamówienia</a></li>
+									<li><a class="dropdown-item text-light" asp-controller="ZamowienieKsiazka" asp-action="Index">Zamówienie książka</a></li>
+									<li><a class="dropdown-item text-light" asp-controller="Kupon" asp-action="Index">Kupony</a></li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-light fw-bold" asp-controller="Uzytkownik" asp-action="Index">
+									<i class="fas fa-users"></i> Użytkownicy
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<div style="background: linear-gradient(to right, #89f7fe, #66a6ff);" class="p-0 m-0">
+		<main class="flex-fill container">
+			@RenderBody()
+		</main>
+	</div>
+
+	<footer class="text-light pt-3 pb-1" style="background-image: radial-gradient(circle at bottom, #1f3b57, #0d1b2a);">
+		<div class="container">
+			<div class="row text-center pt-2">
+				<div class="col-12 col-md-4 mb-1">
+					<h3 class="mb-3">Pobierz aplikację</h3>
+					<p>Pobierz aplikację na Androida i iOS</p>
+					<div class="d-flex justify-content-evenly">
+						<img src="~/content/footerLogo1.png" alt="marka6" style="object-fit: contain; height: 75px;">
+						<img src="~/content/footerLogo2.png" alt="marka6" style="object-fit: contain; height: 75px;">
+					</div>
+				</div>
+				<div class="col-12 col-md-4 mb-1">
+					<h3 class="mb-3">Użyteczne linki</h3>
+					<ul class="list-unstyled">
+						<li><a href="#" class="text-muted text-decoration-none">Kupony</a></li>
+						<li><a href="#" class="text-muted text-decoration-none">Polityka zwrotów</a></li>
+						<li><a href="#" class="text-muted text-decoration-none">Dołącz do programu partnerskiego</a></li>
+					</ul>
+				</div>
+				<div class="col-12 col-md-4 mb-1">
+					<h3 class="mb-3">Śledź nas</h3>
+					<ul class="list-unstyled">
+						<li><a href="#" class="text-muted text-decoration-none">Facebook</a></li>
+						<li><a href="#" class="text-muted text-decoration-none">Twitter</a></li>
+						<li><a href="#" class="text-muted text-decoration-none">Instagram</a></li>
+						<li><a href="#" class="text-muted text-decoration-none">YouTube</a></li>
+					</ul>
+				</div>
+			</div>
+			<hr class="border-light" />
+			<p class="text-center mb-0">© 2025 BookShop, Inc</p>
+		</div>
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+
+	<script>
+		const ctx1 = document.getElementById('salesChart').getContext('2d');
+		const gradient = ctx1.createLinearGradient(0, 0, 0, 300);
+		gradient.addColorStop(0, 'rgba(0, 123, 255, 0.8)');
+		gradient.addColorStop(1, 'rgba(0, 123, 255, 0.1)');
+
+		const salesChart = new Chart(ctx1, {
+			type: 'bar',
+			data: {
+				labels: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
+				datasets: [{
+					label: 'Sprzedaż',
+					data: [213, 421, 346, 400, 380, 450, 500, 480, 460, 430, 410, 390],
+					backgroundColor: gradient,
+					borderColor: '#007bff',
+					borderWidth: 1,
+					borderRadius: 10
+				}]
+			},
+			options: {
+				plugins: {
+					legend: { labels: { color: '#333', font: { size: 16 } } },
+					tooltip: {
+						backgroundColor: 'rgba(0,0,0,0.7)',
+						titleFont: { size: 16 },
+						bodyFont: { size: 14 },
+						cornerRadius: 4,
+					}
+				},
+				scales: {
+					y: {
+						beginAtZero: true,
+						grid: { color: '#eee' },
+						ticks: { color: '#555', font: { size: 14 } }
+					},
+					x: {
+						grid: { color: '#eee' },
+						ticks: { color: '#555', font: { size: 14 } }
+					}
+				},
+				animation: { duration: 1000, easing: 'easeInOutQuad' }
+			}
+		});
+
+		const ctx2 = document.getElementById('usersChart').getContext('2d');
+		const gradientLine = ctx2.createLinearGradient(0, 0, 0, 300);
+		gradientLine.addColorStop(0, 'rgba(40, 167, 69, 0.5)');
+		gradientLine.addColorStop(1, 'rgba(40, 167, 69, 0)');
+
+		const usersChart = new Chart(ctx2, {
+			type: 'line',
+			data: {
+				labels: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
+				datasets: [{
+					label: 'Użytkownicy',
+					data: [72, 57, 63, 70, 75, 68, 80, 85, 78, 74, 69, 73],
+					borderColor: '#28a745',
+					backgroundColor: gradientLine,
+					tension: 0.3,
+					fill: true,
+					pointRadius: 5,
+					pointBackgroundColor: '#28a745'
+				}]
+			},
+			options: {
+				plugins: {
+					legend: { labels: { color: '#333', font: { size: 16 } } },
+					tooltip: {
+						backgroundColor: 'rgba(0,0,0,0.7)',
+						titleFont: { size: 16 },
+						bodyFont: { size: 14 },
+						cornerRadius: 4,
+					}
+				},
+				scales: {
+					y: {
+						beginAtZero: true,
+						grid: { color: '#eee' },
+						ticks: { color: '#555', font: { size: 14 } }
+					},
+					x: {
+						grid: { color: '#eee' },
+						ticks: { color: '#555', font: { size: 14 } }
+					}
+				},
+				animation: { duration: 1000, easing: 'easeInOutQuad' }
+			}
+		});
+	</script>
+
+
+	@RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,37 @@
+﻿@model KsiazkiViewModel
+
+<h2 class="text-center my-5 text-black fw-bold border-bottom border-3 border-info pb-2">@Model.Naglowek</h2>
+<div class="row g-4">
+    @foreach (var item in Model.Ksiazki)
+    {
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="p-3 h-100 shadow-sm rounded-4 border border-light bg-white hover-shadow hover-zoom">
+                <div class="overflow-hidden rounded-3 mb-3">
+                    <img src="@Url.Content(item.OkladkaUrl)" alt="Książka" style="width: 100%; height: 330px; object-fit: contain;">
+                </div>
+                <div class="mb-2 text-warning">
+                    @{
+                        int pelneGwiazdy = (int)Math.Floor(item.SredniaOcena);
+                        bool polowa = (item.SredniaOcena - pelneGwiazdy) >= 0.5;
+                        int pusteGwiazdy = 5 - pelneGwiazdy - (polowa ? 1 : 0);
+                    }
+                    @for (int i = 0; i < pelneGwiazdy; i++)
+                    {
+                        <i class="fas fa-star"></i>
+                    }
+                    @if (polowa)
+                    {
+                        <i class="fas fa-star-half-alt"></i>
+                    }
+                    @for (int i = 0; i < pusteGwiazdy; i++)
+                    {
+                        <i class="far fa-star"></i>
+                    }
+                </div>
+                <h5 class="fw-semibold mb-1">@item.Tytul</h5>
+                <p class="text-muted mb-1">Autor: <strong>@item.Autor</strong></p>
+                <p class="text-primary fw-bold">@string.Format("{0:N2} zł", item.Cena)</p>
+            </div>
+        </div>
+    }
+</div>
