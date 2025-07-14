@@ -81,4 +81,4 @@ Zawiera tabele:
 - Loginy itd.
 
 ## 👨‍💻 Autor
-Kacper Kałużny (Example7)
+**Kacper Kałużny** ([Example7](https://github.com/Example7))
