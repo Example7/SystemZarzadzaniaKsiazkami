@@ -80,5 +80,11 @@ Zawiera tabele:
 - Role
 - Loginy itd.
 
+## 🖼️ Screenshoty
+
+| Logowanie | Panel klienta | Panel pracownika |
+|-----------|----------------|------------------|
+| ![logowanie](screenshots/logowanie_page.png) | ![klient](screenshots/klient_page.png) | ![pracownik](screenshots/pracownik_page.png) |
+
 ## 👨‍💻 Autor
 **Kacper Kałużny** ([Example7](https://github.com/Example7))
